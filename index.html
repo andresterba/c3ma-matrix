@@ -1,81 +1,399 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
 
-    <title>reveal.js</title>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/reveal.css" />
-    <link rel="stylesheet" href="css/theme/black.css" />
+  <title>reveal.js</title>
 
-    <!-- Theme used for syntax highlighting of code -->
-    <link rel="stylesheet" href="lib/css/monokai.css" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/reveal.css" />
+  <link rel="stylesheet" href="css/theme/black.css" />
 
-    <!-- Printing and PDF exports -->
-    <script>
-      var link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.type = "text/css";
-      link.href = window.location.search.match(/print-pdf/gi)
-        ? "css/print/pdf.css"
-        : "css/print/paper.css";
-      document.getElementsByTagName("head")[0].appendChild(link);
-    </script>
-  </head>
-  <body>
-    <div class="reveal">
-      <div class="slides">
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="lib/css/monokai.css" />
+
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.type = "text/css";
+    link.href = window.location.search.match(/print-pdf/gi)
+      ? "css/print/pdf.css"
+      : "css/print/paper.css";
+    document.getElementsByTagName("head")[0].appendChild(link);
+  </script>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <h3>
+          Matrix
+        </h3>
+        <p>29.05.2020 von André</p>
+      </section>
+      <section>
+        <h3>
+          Was wollen wir uns anschauen?
+        </h3>
+        <ul>
+          <li class="fragment">Was ist Matrix?</li>
+          <li class="fragment">Was ist die Matrix.org Foundation?</li>
+          <li class="fragment">Wie funktioniert Matrix?</li>
+          <li class="fragment">Wie betreibe ich meinen eigenen Homeserver?</li>
+        </ul>
+      </section>
+      <section>
         <section>
-          <h3>
-            Matrix
-          </h3>
-          <p>29.05.2020 von André</p>
+          <h2>Was ist Matrix?</h2>
+          <blockquote cite="https://matrix.org/">
+            &ldquo;Matrix is an open source project that publishes the
+            Matrix open standard for secure, decentralised, real-time communication, and its Apache licensed
+            reference implementations.&rdquo;
+          </blockquote>
         </section>
         <section>
-          <section>
-            Slide 2.0
-          </section>
-          <section>
-            Slide 2.1
-          </section>
-          <section>
-            Slide 2.2
-          </section>
-          <section>
-              <h2>Wer nutzt Matrix?</h2>
-              <ul>
-                  <li><a href="https://www.golem.de/news/chat-mozilla-wechselt-von-irc-auf-matrix-und-riot-1912-145664.html">Mozilla</a></li>
-                  <li><a href="https://www.golem.de/news/messenger-bundeswehr-will-komplett-auf-matrix-chat-wechseln-2005-148407.html">Bundeswehr</a></li>
-                  <li><a href="https://www.golem.de/news/statt-whatsapp-frankreich-wandert-in-die-matrix-1902-139167.html">Frankreich</a></li>
-              </ul>
-          </section>
+          <h3>Features</h3>
+          <ul>
+            <li class="fragment">1:1 Chat</li>
+            <li class="fragment">Chat in Räumen</li>
+            <li class="fragment">1:1 VoIP und Videoanrufe</li>
+            <li class="fragment">3rd Party IDs zur Identifikation (Telefonnummer, mail,..)</li>
+            <li class="fragment">Bots/Bridges/...</li>
+          </ul>
+          <a class="fragment"
+            href="https://github.com/matrix-org/synapse#about-matrix">https://github.com/matrix-org/synapse#about-matrix</a>
+          <aside class="notes">
+            *
+          </aside>
         </section>
         <section>
-          Slide 3
+          <h3>Ausschnitt der "Matrix principles"</h3>
+          <aside class="notes">
+            * federation - jeder soll an Matrix teilnehmen können <br>
+            * standard - offen dokumentierter Standart ohne Patentschutz <br>
+            * source reference implementation - freie Referenzimplementierung <br>
+            * Nutzer sollen Server und Client frei wählen können <br>
+            * Nutzer sollen entscheiden wie privat ihre Kommunikation ist (verschlüsselt oder nicht) <br>
+            * Nutzer sollen genau wissen wo ihre Daten gespeichert sind <br>
+            * Voll dezentral - kein einzelner Punkt der Controller über Unterhaltungen oder das Netzwerk als ganzes <br>
+            * Learning from history to avoid repeating it <br>
+            * Trying to take the best aspects of XMPP, SIP, IRC, SMTP, IMAP and whilst trying to avoid their failings
+          </aside>
+          <ul>
+            <li class="fragment">Pragmatic Web-friendly APIs (i.e. JSON over REST)</li>
+            <li class="fragment">Keep It Simple & Stupid (provide a simple architecture with minimal third-party
+              dependencies)</li>
+            <li class="fragment">Fully open federation/standard/source</li>
+            <li class="fragment">Empowering the end-user</li>
+            <li class="fragment">Fully decentralised</li>
+          </ul>
+          <a class="fragment"
+            href="https://matrix.org/docs/spec/#introduction-to-the-matrix-apis">https://matrix.org/docs/spec/#introduction-to-the-matrix-apis</a>
         </section>
-      </div>
+        <section id="fragments">
+          <h3>Wer nutzt Matrix?</h3>
+          <ul>
+            <li class="fragment"><a href="https://matrix.org/blog/2019/12/19/welcoming-mozilla-to-matrix">Mozilla</a>
+            </li>
+            <li class="fragment"><a
+                href="https://www.heise.de/newsticker/meldung/Bundeswehr-setzt-kuenftig-auf-Matrix-als-Messenger-4719474.html">Bundeswehr</a>
+            </li>
+            <li class="fragment"><a
+                href="https://matrix.org/blog/2018/04/26/matrix-and-riot-confirmed-as-the-basis-for-frances-secure-instant-messenger-app">Frankreich</a>
+            </li>
+          </ul>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>The Matrix.org Foundation - a non-profit UK Community Interest Company</h2>
+        </section>
+        <section>
+          <ul>
+            <li class="fragment">"neutral guardian of the standard"</li>
+            <li class="fragment">verwaltet die Matrix Specification</li>
+            <li class="fragment"><a href="https://matrix.org/foundation/">mehr hier</a></li>
+          </ul>
+          <aside class="notes">
+            * Hüter der Norm
+          </aside>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Wie funktioniert Matrix?</h2>
+        </section>
+        <section>
+          <img data-src="pics/overall-architektur.png" alt="Architektur">
+          <a
+            href="https://github.com/matrix-org/synapse#introduction">https://github.com/matrix-org/synapse#introduction</a>
+          <aside class="notes">
+            * Matrix ist eigentlich nur eine REST API
+          </aside>
+        </section>
+        <section>
+          <img data-src="pics/matrix-data-flow.png" alt="Matrix data flow">
+          <a
+            href="https://matrix.org/docs/spec/#introduction-to-the-matrix-apis">https://matrix.org/docs/spec/#introduction-to-the-matrix-apis</a>
+          <aside class="notes">
+            * Kommunikation zwischen Clients funktioniert via Synchronisierung der History mit ihrem "homeserver" und
+            dessen "Client-Server API".
+            * Each homeserver stores the communication history and account information for all of its clients, and
+            shares
+            data with the wider Matrix ecosystem by
+            synchronising communication history with other homeservers and their clients.
+            * Room data is replicated across all of the homeservers whose users are participating in a given room.
+            * Events zb m.room.message
+          </aside>
+        </section>
+        <section>
+          <h3>Events</h3>
+          <ul>
+            <li class="fragment">jede Action = Event</li>
+            <li class="fragment">zB. m.room.message </li>
+          </ul>
+          <pre class="fragment" ><code class="hljs" data-trim>
+            Room ID: !test:matrix.ccc-mannheim.de
+            Event type: m.room.message
+            Content: { JSON object }
+          </code></pre>
+          </aside>
+        </section>
+        <section>
+          <h3>Synchronisierung der Homeserver</h3>
+          <pre class="fragment" ><code class="hljs" data-trim data-line-numbers="4|5|7-8|9">
+            ....................................
+            |           Shared Data              |
+            | State:                             |
+            |   Room ID: !qporfwt:matrix.org     |
+            |   Servers: matrix.org, example.org |
+            |   Members:                         |
+            |    - @alice:matrix.org             |
+            |    - @bob:example.org              |
+            | Messages:                          |
+            |   - @alice:matrix.org              |
+            |     Content: { JSON object }       |
+            |....................................|
+          </code></pre>
+          </aside>
+        </section>
+        <section>
+          <h3>Der Homeserver</h3>
+          <ul>
+            <li class="fragment">Speichert Account Infos und History</li>
+            <li class="fragment">Teilt Daten mit anderen Homeservern</li>
+            <li class="fragment">Räume sind über alle Homeserver der teilnehmenden User repliziert</li>
+            <li class="fragment">User kommuniziert immer mit dem eigenen Homeserver</li>
+          </ul>
+          <aside class="notes">
+            * Jeder Homeserver hat eine Kopie des Raums
+          </aside>
+        </section>
+        <section>
+          <h3>User</h3>
+          <ul>
+            <li class="fragment">@localpart:domain</li>
+            <li class="fragment">zB. andre:matrix.ccc-mannheim.de</li>
+            <li class="fragment">Zu einem Raum hinzufügen dann via @andre:matrix.ccc-mannheim.de</li>
+          </ul>
+          <aside class="notes">
+            *
+          </aside>
+        </section>
+        <section>
+          <h3>Räume</h3>
+          <ul>
+            <li class="fragment">#raum:domain</li>
+            <li class="fragment">zB. #matrix:matrix.ccc-mannheim.de</li>
+          </ul>
+          <aside class="notes">
+            *
+          </aside>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Wie betreibe ich meinen eigenen Homeserver?</h2>
+          <aside class="notes">
+            * Homeserver ist eigentlich falsch, um Matrix richtig zu betreiben benötigt man mehrere
+            Komponenten.
+          </aside>
+        </section>
+        <section>
+          <h3>Übersicht der Komponenten</h3>
+          <img data-src="pics/architektur.png" alt="Matrix Architektur">
+        </section>
+        <section>
+          <h3>Synapse</h3>
+          <ul>
+            <li class="fragment">Homeserver Referenzimplementierung</li>
+            <li class="fragment">Implementiert daher die komplette Spec</li>
+            <li class="fragment"><a href="https://github.com/matrix-org/synapse">GitHub</a></li>
+          </ul>
+          <aside class="notes">
+            *
+          </aside>
+        </section>
+        <section>
+          <h3>Weitere Server</h3>
+          <img data-src="pics/servers.png" alt="Matrix Servers">
+          <aside class="notes">
+            *
+          </aside>
+        </section>
+        <section>
+          <h3>PostgreSQL</h3>
+          <ul>
+            <li class="fragment">aktuell wird nur PostgreSQL unterstützt</li>
+            <li class="fragment">(SQLite nur für Testinstanzen)</li>
+          </ul>
+          <aside class="notes">
+            *
+          </aside>
+        </section>
+        <section>
+          <h3>coturn</h3>
+          <ul>
+            <li class="fragment">STUN = öffentliche IP hinter NAT erfahren</li>
+            <li class="fragment">TURN = alternative wenn keine direkte Kommunikation möglich ist</li>
+            <li class="fragment">Hilft bei Anrufen in Riot</li>
+          </ul>
+          <aside class="notes">
+            * STUN: Das STUN-Protokoll dient Clients, die sich bspw. hinter einem Router oder einer Firewall befinden
+            und eine NAT-Adresse haben. <br>
+            Mithilfe des STUN-Servers können NAT-Clients ihre öffentliche IP-Adresse erfahren und sind anschließend in
+            der Lage eine direkte Kommunikationsverbindung
+            zwischen (zwei) Teilnehmern herzustellen. <br>
+
+            * TURN: Das TURN-Protokoll wiederum ermöglicht es (zwei) Teilnehmern, Daten ohne eine direkte Verbindung
+            auszutauschen. <br>
+            Das kann bspw. dann notwendig sein, wenn es aufgrund von Firewall-Beschränkungen keine Möglichkeit gibt eine
+            direkte Kommunikation mit einem <br>
+            anderen Teilnehmer oder der (Jitsi-)Videobridge aufzubauen. <br>
+            Dabei fließen die Nutzdaten (Video und Audio) direkt über den TURN-Server und nicht wie eigentlich üblich
+            über die Videobridge. <br>
+            Dieser Anwendungsfall erfordert viel Bandbreite und erzeugt im Gegensatz zum STUN-Protokoll ein hohes
+            Datenaufkommen. <br>
+          </aside>
+        </section>
+        <section>
+          <h3>Riot Web</h3>
+          <ul>
+            <li class="fragment">Referenzimplementierung</li>
+            <li class="fragment">Chat/Anrufe/Videoanrufe/Integrations/...</li>
+          </ul>
+          <aside class="notes">
+            * Riot kann alles was Matrix aktuell kann
+          </aside>
+        </section>
+        <section>
+          <h3>Weitere Clients</h3>
+          <img data-src="pics/clients.png" alt="Matrix Clients">
+          <aside class="notes">
+            *
+          </aside>
+        </section>
+        <section>
+          <h3>ma1sd</h3>
+          <ul>
+            <li class="fragment">Implementiert Identity Service API</li>
+            <li class="fragment">speichert weiter Infos zum User</li>
+            <li class="fragment">zB. Telefonnummer, Mail, ...</li>
+            <li class="fragment"><a href="https://matrix.org/docs/spec/identity_service/r0.2.0">Identity Service API</a>
+            </li>
+            <li class="fragment"><a href="https://github.com/ma1uta/ma1sd">GitHub</a></li>
+          </ul>
+          <aside class="notes">
+            *
+          </aside>
+        </section>
+        <section>
+          <h3>Dimension</h3>
+          <ul>
+            <li class="fragment">Verwaltung der Integrations/Bridges</li>
+            <li class="fragment"><a href="https://github.com/turt2live/matrix-dimension">GitHub</a></li>
+          </ul>
+          <aside class="notes">
+            *
+          </aside>
+        </section>
+        <section>
+          <img data-src="pics/dimension.png" alt="Matrix Clients">
+        </section>
+        <section>
+          <h3>matrix-appservice-webhooks</h3>
+          <ul>
+            <li class="fragment">Slack like Webhooks für Bots/Alerts</li>
+            <li class="fragment"><a href="https://github.com/turt2live/matrix-appservice-webhooks">GitHub</a></li>
+          </ul>
+          <aside class="notes">
+            * Das ist nur EIN Beispiel für eine Integration
+            * Es gibt noch IRC Bridges
+            * Giphy Bot usw..
+          </aside>
+        </section>
+        <section>
+          <h3>Weitere Bridges</h3>
+          <img width="500" height="500" data-src="pics/bridges.png" alt="Matrix Bridges">
+          <aside class="notes">
+            *
+          </aside>
+        </section>
+        <section>
+          <h3>nginx</h3>
+          <ul>
+            <li class="fragment">Reverse Proxy vor Synapse und Riot-Web (und dem Rest)</li>
+          </ul>
+          <aside class="notes">
+            *
+          </aside>
+        </section>
+      </section>
+      </section>
+      <section>
+        <h3>Matrix für Devs/Admins</h3>
+        <ul>
+          <li class="fragment"><a href="https://matrix.org/sdks/">SDKs</a> in quasi jeder relevanten Sprache</li>
+          <li class="fragment"><a href="https://github.com/spantaleev/matrix-docker-ansible-deploy">Ansible
+              Playbooks</a></li>
+        </ul>
+        <aside class="notes">
+          *
+        </aside>
+      </section>
+      <section>
+        <h3>Wo finde ich diese Folien?</h3>
+        <a href="https://github.com/andresterba/c3ma-matrix">github.com/andresterba/c3ma-matrix</a>
+        <aside class="notes">
+          *
+        </aside>
+      </section>
     </div>
+  </div>
 
-    <script src="js/reveal.js"></script>
+  <script src="js/reveal.js"></script>
 
-    <script>
-      // More info about config & dependencies:
-      // - https://github.com/hakimel/reveal.js#configuration
-      // - https://github.com/hakimel/reveal.js#dependencies
-      Reveal.initialize({
-        hash: true,
-        dependencies: [
-          { src: "plugin/markdown/marked.js" },
-          { src: "plugin/markdown/markdown.js" },
-          { src: "plugin/highlight/highlight.js" },
-          { src: "plugin/notes/notes.js", async: true },
-        ],
-      });
-    </script>
-  </body>
+  <script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+      hash: true,
+      dependencies: [
+        { src: "plugin/markdown/marked.js" },
+        { src: "plugin/markdown/markdown.js" },
+        { src: "plugin/highlight/highlight.js" },
+        { src: "plugin/notes/notes.js", async: true },
+      ],
+    });
+  </script>
+</body>
+
 </html>
